@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .ruff_cache/
+*.egg-info/
 .env
 data/lakehouse/
 data/downloads/
@@ -13,10 +14,3 @@ dbt_lakehouse/target/
 dbt_lakehouse/logs/
 apps/**/node_modules/
 *.local
-@@
- reports/generated/
- airflow/logs/
-+*.egg-info/
-+.pytest_cache/
-+.ruff_cache/
-.venv/
