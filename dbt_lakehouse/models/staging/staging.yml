@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: bronze
+    schema: bronze
+    tables:
+      - name: retail_sales
+
+models:
+  - name: stg_retail_sales
+    columns:
+      - name: year_month
+        tests: [not_null]
+      - name: item_code
+        tests: [not_null]
+      - name: item_type
+        tests: [not_null]

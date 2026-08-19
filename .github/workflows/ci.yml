@@ -1,0 +1,37 @@
+name: Lakehouse Quality Gate
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Python, Spark, and pipeline validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Java for Spark
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install project
+        run: python -m pip install --upgrade pip && python -m pip install -e ".[dev,spark]"
+      - name: Lint and test
+        run: ruff check src tests && pytest -q
+      - name: Exercise bronze-to-gold demo
+        run: >-
+          python -m lakehouse.pipeline
+          --source-file data/fixtures/montgomery_retail_sales.csv
+          --data-root /tmp/lakehouse
+          --reporting-dir /tmp/lakehouse-reports

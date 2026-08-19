@@ -1,0 +1,22 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.env
+data/lakehouse/
+data/downloads/
+reports/generated/
+airflow/logs/
+airflow/plugins/
+dbt_lakehouse/target/
+dbt_lakehouse/logs/
+apps/**/node_modules/
+*.local
+@@
+ reports/generated/
+ airflow/logs/
++*.egg-info/
++.pytest_cache/
++.ruff_cache/
+.venv/

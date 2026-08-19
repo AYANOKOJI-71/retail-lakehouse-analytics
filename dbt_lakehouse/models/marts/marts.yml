@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: monthly_category_metrics
+    description: Monthly product-category measures for reporting and warehouse export.
+    columns:
+      - name: year_month
+        tests: [not_null]
+      - name: item_type
+        tests: [not_null]
+      - name: net_cases
+        tests: [not_null]
